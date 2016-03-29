@@ -15,7 +15,6 @@ import java.util.*;
 public class VerticleConsumer extends AbstractVerticle {
 
   private NetServer server;
-  private Map<String, NetSocket> socketInfo = new HashMap<>();
   private Map<String, NetSocket> userInfo = new HashMap<>();
 
   @Override
@@ -29,11 +28,20 @@ public class VerticleConsumer extends AbstractVerticle {
     server.close(socket -> userInfo.remove(socket));
 
     EventBus eventBus = vertx.eventBus();
+
     eventBus.consumer("tcp.push.message", message -> {
       JsonObject body = (JsonObject) message.body();
       NetSocket socket = userInfo.get(body.getString("id"));
       socket.write(body.toString());
     });
+
+//    eventBus.consumer("tcp.push.message", message -> {
+//      JsonObject body = (JsonObject) message.body();
+//      NetSocket socket = userInfo.get(body.getString("id"));
+//      socket.write(body.toString());
+//    });
+
+
     server.listen(8888);
   }
 }
