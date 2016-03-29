@@ -1,8 +1,7 @@
-package me.wonwoo.provider;
+package me.wonwoo.producer;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.MultiMap;
-import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
@@ -12,7 +11,7 @@ import io.vertx.ext.web.handler.BodyHandler;
 /**
  * Created by wonwoo on 2016. 3. 29..
  */
-public class VerticleProvider extends AbstractVerticle {
+public class VerticleProducer extends AbstractVerticle {
 
   @Override
   public void start() throws Exception {

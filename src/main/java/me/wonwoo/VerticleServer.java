@@ -2,7 +2,7 @@ package me.wonwoo;
 
 import io.vertx.core.AbstractVerticle;
 import me.wonwoo.consumer.VerticleConsumer;
-import me.wonwoo.provider.VerticleProvider;
+import me.wonwoo.producer.VerticleProducer;
 
 /**
  * Created by wonwoo on 2016. 3. 29..
@@ -16,6 +16,6 @@ public class VerticleServer extends AbstractVerticle{
   @Override
   public void start() throws Exception {
     vertx.deployVerticle(new VerticleConsumer());
-    vertx.deployVerticle(new VerticleProvider());
+    vertx.deployVerticle(new VerticleProducer());
   }
 }
