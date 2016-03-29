@@ -28,7 +28,10 @@ public class VerticleProducer extends AbstractVerticle {
     MultiMap params = routingContext.request().params();
     String id = params.get("id");
     JsonObject code = new JsonObject().put("code", "000").put("id", id);
-    routingContext.vertx().eventBus().send("tcp.push.message", code);
+    routingContext.vertx().eventBus().send("tcp.push.message", code, message->{
+      System.out.println(message.succeeded());
+      System.out.println(message.result().body());
+    });
     response.putHeader("content-type", "application/json").end(code.toString());
   }
 }
