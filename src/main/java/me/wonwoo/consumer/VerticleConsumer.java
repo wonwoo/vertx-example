@@ -33,6 +33,7 @@ public class VerticleConsumer extends AbstractVerticle {
       JsonObject body = (JsonObject) message.body();
       NetSocket socket = userInfo.get(body.getString("id"));
       socket.write(body.toString());
+      message.reply(body);
     });
 
 //    eventBus.consumer("tcp.push.message", message -> {
