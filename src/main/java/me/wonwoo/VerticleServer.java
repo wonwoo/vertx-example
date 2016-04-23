@@ -2,8 +2,6 @@ package me.wonwoo;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
-import io.vertx.core.Vertx;
-import io.vertx.core.VertxOptions;
 
 /**
  * Created by wonwoo on 2016. 3. 29..
