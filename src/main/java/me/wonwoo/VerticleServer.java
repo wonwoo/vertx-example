@@ -1,13 +1,14 @@
 package me.wonwoo;
 
 import io.vertx.core.AbstractVerticle;
-import me.wonwoo.consumer.VerticleConsumer;
-import me.wonwoo.producer.VerticleProducer;
+import io.vertx.core.DeploymentOptions;
+import io.vertx.core.Vertx;
+import io.vertx.core.VertxOptions;
 
 /**
  * Created by wonwoo on 2016. 3. 29..
  */
-public class VerticleServer extends AbstractVerticle{
+public class VerticleServer extends AbstractVerticle {
 
   public static void main(String[] args) {
     Runner.runExample(VerticleServer.class);
@@ -15,7 +16,9 @@ public class VerticleServer extends AbstractVerticle{
 
   @Override
   public void start() throws Exception {
-    vertx.deployVerticle(new VerticleConsumer());
-    vertx.deployVerticle(new VerticleProducer());
+    VertxOptions options = new VertxOptions();
+    vertx.deployVerticle("me.wonwoo.consumer.VerticleConsumer");
+    vertx.deployVerticle("me.wonwoo.producer.VerticleProducer", new DeploymentOptions().setInstances(2).setWorker(true));
+//    vertx.deployVerticle("me.wonwoo.producer.VerticleProducer", new DeploymentOptions().setInstances(2));
   }
 }
