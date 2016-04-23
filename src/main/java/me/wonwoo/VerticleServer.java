@@ -16,9 +16,12 @@ public class VerticleServer extends AbstractVerticle {
 
   @Override
   public void start() throws Exception {
-    VertxOptions options = new VertxOptions();
+//    VertxOptions options = new VertxOptions();
+//    options.setBlockedThreadCheckInterval(1000 * 60 * 60);
+//    vertx = Vertx.vertx(options);
     vertx.deployVerticle("me.wonwoo.consumer.VerticleConsumer");
     vertx.deployVerticle("me.wonwoo.producer.VerticleProducer", new DeploymentOptions().setInstances(2).setWorker(true));
 //    vertx.deployVerticle("me.wonwoo.producer.VerticleProducer", new DeploymentOptions().setInstances(2));
+
   }
 }
